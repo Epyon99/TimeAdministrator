@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../../common/build/standard.props" />
+  <Import Project="../../../common/build/standard.rules.props" />
+  <Import Project="../../version.props" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ensure.That" Version="5.0.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.3" />
+    <PackageReference Include="System.EventSourcing.AspNetCore.Hosting" Version="1.0.0-preview5" />
+    <PackageReference Include="System.EventSourcing.AspNetCore.Kafka" Version="1.0.0-preview5" />
+    <PackageReference Include="System.EventSourcing.Client.Kafka" Version="1.0.0-preview5" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Service\src\EPY.Services.Common.Hosting\EPY.Services.Common.Hosting.csproj" />
+    <ProjectReference Include="..\..\..\Common\Service\src\EPY.Services.Common.Service\EPY.Services.Common.Service.csproj" />
+  </ItemGroup>
+</Project>

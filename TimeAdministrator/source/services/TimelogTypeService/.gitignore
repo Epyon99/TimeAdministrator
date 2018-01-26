@@ -1,0 +1,8 @@
+*.swp
+*.*~
+bin/
+obj/
+.DS_Store
+launchSettings.json
+*.csproj.user
+.vs/

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../../build/standard.props" />
+  <Import Project="../../../build/standard.rules.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>EPY.Services.Common.Hosting</AssemblyName>
+    <PackageId>EPY.Services.Common.Hosting</PackageId>
+    <Version>1.0.0-alpha2</Version>
+  </PropertyGroup>
+</Project>

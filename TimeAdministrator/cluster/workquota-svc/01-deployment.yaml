@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: workquota-service
+  namespace: adtd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: workquota
+    spec:
+      containers:
+      - name: workquota-svc
+        image: docugatehub-on.azurecr.io/EPY.services.workquota:1.0.0-alpha1
+        ports:
+        - containerPort: 5010
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/CuotaDeTrabajo/
+        resources:
+          limits:
+            cpu: 300m
+            memory: 150Mi
+          requests:
+            cpu: 200m
+            memory: 100Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: workquota-config
+      imagePullSecrets:
+        - name: adtd-docker-reg-secret

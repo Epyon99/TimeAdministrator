@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workquota-svc
+  namespace: adtd
+  labels:
+    svc: workquota
+spec:
+  ports:
+  - port: 5020
+    protocol: TCP
+  selector:
+    svc: workquota

@@ -1,0 +1,193 @@
+swagger: '2.0'
+info:
+  version: '0.0.1'
+  title: Time Desk Service
+  description: Time Desk API to log coming and going of an employee
+basePath: /v1/td
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+host: api.adtd.Epyonsoft.ch
+paths:
+  /bookings:
+    put:
+      description: Create a new time log now or at a specific datetime.
+      parameters:
+        - name: content
+          in: body
+          description: |
+            A booking request contains a range of dates to be logged in the 
+            timelogs.
+          required: false
+          schema:
+            $ref: "#/definitions/BookingRequest"
+      responses:
+        200:
+          description: Successfully created a timelog
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/BookingResponse"
+        403:
+          description: The day has been closed to adding timelogs and thus the request has been denied
+  /logs:
+    put:
+      description: Create a new time log now or at a specific datetime.
+      parameters:
+        - name: content
+          in: body
+          description: |
+            providing a `TimeLogRequest` will create a timelog at the date & time specfied in the content, omitting this parameter will result in a timelog to be created at the **current** date & time
+          required: false
+          schema:
+            $ref: '#/definitions/TimeLogRequest'
+      responses:
+        200:
+          description: Successfully created a timelog
+          schema:
+            $ref: "#/definitions/TimeLogResponse"
+        403:
+          description: The day has been closed to adding timelogs and thus the request has been denied
+    post:
+      summary: Updates a timelog according to the information in the contents `TimeEditRequest`
+      parameters:
+      - name: content
+        in: body
+        description: a time edit request that specifies a new time for the given log id
+        required: true
+        schema:
+          $ref: '#/definitions/TimeEditRequest'
+      responses:
+        200:
+          description: time log has been changed
+          schema:
+            $ref: "#/definitions/TimeLogResponse"
+        403:
+          description: The specified time log cannot be changed because either it's date is not open to changes anymore or the new datetime is ahead/behind its current date.
+    get:
+      summary: Gets a collection of timelogs filtered to match the given query
+      parameters:
+      - name: from
+        in: query
+        description: the date of/from which to return logs
+        required: true
+        type: string
+        format: YYYY-mm-dd
+      - name: till
+        in: query
+        description: in combination with the `from` parameter this will define the range for which to query logs!
+        required: false
+        type: string
+        format: YYYY-mm-dd
+      responses:
+        200:
+          description: Timelogs for the given query
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/TimeLogResponse"
+  /logs/{id}:
+    delete:
+      summary: Deletes a TimeLog found by its identifier
+      parameters:
+      - name: id
+        in: path
+        description: The TimeLog identifier
+        required: true
+        type: string
+      responses:
+        200:
+          description: TimeLog was found and deleted
+        404:
+          description: TimeLog to delete was not found
+definitions:
+  TimeLogResponse:
+    type: object
+    required:
+      - id
+      - time
+    properties:
+      id:
+        type: string
+        format: guid
+        description: |
+          Formatted as ccccccc-cccc-cccc-cccc-ccccccccccc where c can be any number from 0 to 9 or any letter from a to z. For example: 6984d85f-85be-45b8-aa4b-27a15baa45d3
+      time:
+        type: string
+        format: date-time
+        description: | 
+          formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+  TimeLogRequest:
+    type: object
+    required:
+      - timeStamp
+    properties:
+      timeStamp:
+        type: string
+        format: date-time
+        description: | 
+          formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+  TimeEditRequest:
+    type: object
+    required:
+      - id
+      - timeStamp
+    properties:
+      id:
+        type: string
+        format: guid
+        description: |
+          Formatted as ccccccc-cccc-cccc-cccc-ccccccccccc where c can be any number from 0 to 9 or any letter from a to z. For example: 6984d85f-85be-45b8-aa4b-27a15baa45d3
+      timeStamp:
+        type: string
+        format: date-time
+        description: | 
+          formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+  BookingRequest:
+    type: object
+    required:
+      - typeid
+      - dates
+    properties:
+      typeid:
+        type: string
+        format: guid
+        description: |
+          Formatted as ccccccc-cccc-cccc-cccc-ccccccccccc where c can be any number from 0 to 9 or any letter from a to z. For example: 6984d85f-85be-45b8-aa4b-27a15baa45d3
+      dates:
+        type: array
+        items: 
+          type: string
+        description: |
+          An array formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+  BookingResponse:
+    type: object
+    required:
+      - id
+      - typeid
+      - startDate
+      - endDate
+    properties:
+      startDate:
+        type: string
+        format: date-time
+        description: | 
+          formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+      endDate:
+        type: string
+        format: date-time
+        description: | 
+          formatted according to the date-time-offset standard for invariant cultures: 'dddd, MMM dd yyyy HH:mm:ss zzz' with zzz being the correction factor to get UTC time. For example: 'Thursday, Nov 01 2007 09:00:00 -07:00'
+      typeid:
+        type: string
+        format: guid
+        description: |
+          Formatted as ccccccc-cccc-cccc-cccc-ccccccccccc where c can be any number from 0 to 9 or any letter from a to z. For example: 6984d85f-85be-45b8-aa4b-27a15baa45d3
+      id:
+        type: string
+        format: guid
+        description: |
+          Formatted as ccccccc-cccc-cccc-cccc-ccccccccccc where c can be any number from 0 to 9 or any letter from a to z. For example: 6984d85f-85be-45b8-aa4b-27a15baa45d3

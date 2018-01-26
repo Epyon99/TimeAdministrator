@@ -1,0 +1,32 @@
+<!--Todo: Inline css because of demo remove after -->
+<!--
+<div>
+  <h5> From :{{dateFromModel.day}}.{{ dateFromModel.month }}.{{ dateFromModel.year }} - Till :{{dateTillModel.day}}.{{ dateTillModel.month
+    }}.{{ dateTillModel.year }}</h5>
+  <ngb-datepicker [(ngModel)]="dateFromModel" [navigation]="navigation" (ngModelChange)="selectedFromDate()"></ngb-datepicker>
+  <ngb-datepicker [(ngModel)]="dateTillModel" [navigation]="navigation" (ngModelChange)="selectedTillDate()"></ngb-datepicker>
+</div> -->
+<div class="simpleCalendar">
+  <div>
+    <ngb-datepicker [(ngModel)]="simpleModelPicker" [navigation]="navigation" (ngModelChange)="addToList()"></ngb-datepicker>
+  </div>
+  <div class="FixedHeightContainer">
+    <h5 class="headerCenter">Multiple dates selected:</h5>
+    <div class="ContentHeight">
+      <ul class="simpleCalendarList">
+        <li *ngFor="let simpleDate of simpleModelList">
+          <div class="simpleCalendar">
+            <div>
+              <button class="btn btn-danger btn-xxs" (click)="removeFromList(simpleDate.id)">X</button></div>
+            <div>
+              <p class="simpleParagragh"> {{simpleDate.date.day}}.{{ simpleDate.date.month }}.{{ simpleDate.date.year }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div>
+  <p class="simpleParagragh"> Days selected: {{simpleModelList.length}}
+</div>

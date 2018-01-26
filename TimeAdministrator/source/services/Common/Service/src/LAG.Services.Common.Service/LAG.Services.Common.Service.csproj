@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../../build/standard.props" />
+  <Import Project="../../../build/standard.rules.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>EPY.Services.Common.Service</AssemblyName>
+    <PackageId>EPY.Services.Common.Service</PackageId>
+    <Version>1.0.0-alpha2</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
+  </ItemGroup>
+</Project>

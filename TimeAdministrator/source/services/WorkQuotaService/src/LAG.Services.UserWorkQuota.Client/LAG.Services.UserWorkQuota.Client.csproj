@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="../../../common/build/standard.props" />
+  <Import Project="../../../common/build/standard.rules.props" />
+  <Import Project="../../version.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Client\src\Docugate.Services.Common.Client\Docugate.Services.Common.Client.csproj" />
+  </ItemGroup>
+</Project>

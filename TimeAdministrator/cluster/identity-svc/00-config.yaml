@@ -1,0 +1,1 @@
+kubectl create configmap identitysvc-config --from-file=appsettings.json=appsettings.production.json -n adtd

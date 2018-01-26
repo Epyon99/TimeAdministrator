@@ -1,0 +1,108 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: TipoLogTiempo API
+  description: Epy Microservice for Timelog Types
+basePath: /v1/types
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /:
+    put:
+      summary: Creates a new timelog type
+      parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TipoLogTiempoRequest'
+      responses:
+        '200':
+          description: The created TipoLogTiempo
+          schema:
+            $ref: '#/definitions/TipoLogTiempoResponse'
+    get:
+      summary: Returns all timelog types
+      responses:
+        '200':
+          description: A collection of TipoLogTiempos
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/TipoLogTiempoResponse"
+  '/{typeid}':
+    post:
+      summary: Updates the existing timelog type
+      parameters:
+        - name: typeid
+          in: path
+          description: the timelog typeid
+          required: true
+          type: string
+        - name: request
+          in: body
+          description: Factor, Color and name to update.
+          required: true
+          schema:
+            $ref: '#/definitions/TipoLogTiempoUpdateRequest'
+      responses:
+        '200':
+          description: TipoLogTiempo updated.
+    get:
+      summary: Returns a timelog type
+      parameters:
+        - name: typeid
+          in: path
+          description: The timelog type id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Timelog type was found and returned
+          schema:
+            $ref: '#/definitions/TipoLogTiempoResponse'
+    delete:
+      summary: Deletes the existing timelog type
+      parameters:
+        - name: typeid
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Timelog type was found and deleted
+definitions:
+  TipoLogTiempoRequest:
+    type: object
+    properties:
+      name:
+        type: string
+      factor: 
+        type: number
+      color:
+        type: string
+  TipoLogTiempoUpdateRequest:
+    type: object
+    properties:
+      name:
+        type: string
+      factor: 
+        type: number
+      color:
+        type: string
+  TipoLogTiempoResponse:
+    description: User daily work quota response
+    type: object
+    properties:
+      id:
+        description: The user daily work quota
+        type: object
+      name:
+        type: string
+      factor:
+        type: number
+      color:
+        type: string
+securityDefinitions: {}

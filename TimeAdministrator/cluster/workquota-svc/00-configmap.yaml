@@ -1,0 +1,1 @@
+kubectl create configmap workquota-config --from-file=appsettings.json=../../source/services/CuotaDeTrabajo/src/EPY.Services.UserWorkQuota/Configuration/appsettings.production.json -n adtd

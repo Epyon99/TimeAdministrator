@@ -1,0 +1,30 @@
+.simpleCalendar {
+    display: inline-flex;
+}
+.simpleCalendarList {
+    list-style-type: none;
+}
+
+.simpleParagragh{
+    margin: 1px 5px;
+    padding: 0px;
+}
+.FixedHeightContainer
+{
+  height: 200px;
+  width:250px; 
+  padding:3px; 
+}
+.ContentHeight
+{
+  height:180px;
+   overflow:auto;
+    background:#fff;
+}
+.headerCenter{
+    text-align: center;
+}
+.btn-xxs{
+    font-size: 0.5rem;
+    padding: .10rem 0.25rem;
+}

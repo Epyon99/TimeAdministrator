@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: TipoLogTiempo-service
+  namespace: adtd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: TipoLogTiempo
+    spec:
+      containers:
+      - name: TipoLogTiempo-svc
+        image: docugatehub-on.azurecr.io/adtd.services.TipoLogTiempo:1.0.0-alpha2
+        ports:
+        - containerPort: 5010
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/TipoLogTiemposervice/
+        resources:
+          limits:
+            cpu: 300m
+            memory: 150Mi
+          requests:
+            cpu: 200m
+            memory: 100Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: TipoLogTiempo-config
+      imagePullSecrets:
+        - name: adtd-docker-reg-secret

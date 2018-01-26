@@ -1,0 +1,36 @@
+<form class="form-inline">
+  <div class="form-group">
+    <div class="input-group" [hidden]="rangeActive">
+      <input class="form-control" placeholder="dd.mm.yyyy" name="buchendDatePicker" [(ngModel)]="timeform.date" ngbDatepicker #buchenDatePicker="ngbDatepicker"
+        (ngModelChange)="loadTimeLogs()" />
+      <div class="input-group-addon" (click)="buchenDatePicker.toggle()">
+        <img src="../../assets/images/calendar-icon.svg" class="calendar-icon" />
+      </div>
+    </div>
+    <div class="input-group" [hidden]="!rangeActive">
+      <Epy-LogTiempo-range-date-picker [(simpleModelList)]="rangeList" [(dateTill)]="rangeDateTill" [(dateFrom)]="rangeDateFrom"  ></Epy-LogTiempo-range-date-picker>
+    </div>
+  </div>
+</form>
+<br/>
+<div class="input-group">
+  <input type="checkbox" [checked]="rangeActive" (change)="rangeActive = !rangeActive"/>
+  <p>
+    Select Multiple Dates
+  </p>
+  
+  
+</div>
+<div class="d-inline-block" ngbDropdown #buchenDrop="ngbDropdown">
+  <button class="btn btn-outline-primary" id="buchenBtn" (click)="buchenParentBtnEvent()" ngbDropdownToggle i18n>Buchen</button>
+  <div class="dropdown-menu" aria-labelledby="buchenBtn">
+    <button *ngFor="let TipoLogTiempo of listofTipoLogTiempos" class="dropdown-item" (click)="buchenBtnEvent(TipoLogTiempo)"> 
+      {{TipoLogTiempo.name}}
+    </button>
+  </div>
+</div>
+<hr/>
+
+<div>
+  <Epy-LogTiempo-timeline [timeForm]="timeform" (reload)="refresh($event)" [favoriteWords]="favoriteWords" [selectedTimeLine]="selectedTimeLine"></Epy-LogTiempo-timeline>
+</div>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rules for StyleCop.Analyzers" Description="Code analysis rules for StyleCop.Analyzers.csproj." ToolsVersion="14.0">
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0003" Action="Warning" />
+    <Rule Id="IDE0001" Action="Warning" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1400" Action="None" />
+    <Rule Id="SA1413" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="RefactoringEssentials" RuleNamespace="RefactoringEssentials">
+    <Rule Id="RECS0165" Action="None" />
+    <Rule Id="RECS0145" Action="Warning" />
+    <Rule Id="RECS0147" Action="Warning" />
+  </Rules>
+</RuleSet>

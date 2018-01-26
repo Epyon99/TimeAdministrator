@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: LogTiempo-service
+  namespace: adtd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: LogTiempo
+    spec:
+      containers:
+      - name: LogTiempo-svc
+        image: docugatehub-on.azurecr.io/adtd.services.LogTiempo:1.0.0-alpha2
+        ports:
+        - containerPort: 5010
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/LogDeTiempo/
+        resources:
+          limits:
+            cpu: 300m
+            memory: 150Mi
+          requests:
+            cpu: 200m
+            memory: 100Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: LogTiempo-config
+      imagePullSecrets:
+        - name: adtd-docker-reg-secret

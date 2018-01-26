@@ -1,0 +1,81 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: UserWorkQuota API
+  description: Epy Microservice for user work quota managment
+basePath: /v1/daily
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /:
+    put:
+      summary: Creates a daily work quota for a given user
+      parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AddUserDailyWorkQuotaRequest'
+      responses:
+        '200':
+          description: Quota was created
+    post:
+      summary: Updates the existing daily work quota for a given user
+      parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateUserDailyWorkQuotaRequest'
+      responses:
+        '200':
+          description: Quota was found and updated
+  '/{userid}':
+    get:
+      summary: Returns a user daily work quota
+      parameters:
+        - name: userid
+          in: path
+          description: The user id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Quota was found and returned
+          schema:
+            $ref: '#/definitions/GetUserDailyWorkQuotaResponse'
+    delete:
+      summary: Deletes the existing daily work quota for a given user
+      parameters:
+        - name: userid
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Quota was found and deleted
+definitions:
+  AddUserDailyWorkQuotaRequest:
+    type: object
+    properties:
+      userId:
+        type: string
+      dailyWorkQuota:
+        type: string
+  UpdateUserDailyWorkQuotaRequest:
+    type: object
+    properties:
+      dailyWorkQuota:
+        type: string
+      userId:
+        type: string
+  GetUserDailyWorkQuotaResponse:
+    description: User daily work quota response
+    type: object
+    properties:
+      userDailyWorkQuota:
+        description: The user daily work quota
+        type: object
+securityDefinitions: {}

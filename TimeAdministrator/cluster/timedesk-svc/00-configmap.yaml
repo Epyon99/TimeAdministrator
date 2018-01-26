@@ -1,0 +1,1 @@
+kubectl create configmap LogTiempo-config --from-file=appsettings.json=../../source/services/LogDeTiempo/src/EPY.Services.LogTiempo/Configuration/appsettings.production.json -n adtd

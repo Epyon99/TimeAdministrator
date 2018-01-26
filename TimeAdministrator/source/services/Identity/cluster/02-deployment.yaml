@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: identity-svc
+  namespace: adtd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        svc: identity
+    spec:
+      containers:
+      - name: Epy-services-identity
+        image: docugatehub-on.azurecr.io/EPY.services.identity:1.0.0-alpha2
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        - name: ASPNETCORE_CONTENTROOT
+          value: /etc/EPY.services.identity/
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/EPY.services.identity/
+      volumes:
+        - name: config-volume
+          configMap:
+            name: identitysvc-config
+      imagePullSecrets:
+        - name:   adtd-docker-reg-secret

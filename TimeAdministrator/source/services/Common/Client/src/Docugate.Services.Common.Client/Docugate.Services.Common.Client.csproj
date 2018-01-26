@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../../build/standard.props" />
+  <Import Project="../../../build/standard.rules.common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+	  <Version>1.0.0-alpha2</Version>
+    <PackageId>Docugate.Services.Common.Client</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestEase" Version="1.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>

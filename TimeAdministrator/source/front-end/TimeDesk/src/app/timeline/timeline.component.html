@@ -1,0 +1,81 @@
+<div>
+  <div class="progress">
+    <span class="startTimeLabelRule">00</span>
+
+    <span class="quarterTimeLabelRule">01</span>
+    <span class="quarterTimeLabelRule">02</span>
+    <span class="quarterTimeLabelRule">03</span>
+    <span class="quarterTimeLabelRule">04</span>
+    <span class="quarterTimeLabelRule">05</span>
+    <span class="quarterTimeLabelRule">06</span>
+    <span class="quarterTimeLabelRule">07</span>
+    <span class="quarterTimeLabelRule">08</span>
+    <span class="quarterTimeLabelRule">09</span>
+    <span class="quarterTimeLabelRule">10</span>
+    <span class="quarterTimeLabelRule">11</span>
+    <span class="middleTimeLabelRule">12</span>
+    <span class="rigthquarterLabelRule">13</span>
+    <span class="rigthquarterLabelRule">14</span>
+    <span class="rigthquarterLabelRule">15</span>
+    <span class="rigthquarterLabelRule">16</span>
+    <span class="rigthquarterLabelRule">17</span>
+    <span class="rigthquarterLabelRule">18</span>
+
+    <span class="rigthquarterLabelRule">19</span>
+    <span class="rigthquarterLabelRule">20</span>
+    <span class="rigthquarterLabelRule">21</span>
+    <span class="rigthquarterLabelRule">22</span>
+    <span class="rigthquarterLabelRule">23</span>
+    <span class="endTimeLabelRule">24</span>
+  </div>
+</div>
+<div>
+  <div class="progress timebar-container">
+    <div *ngFor="let timeline of timeForm.listOfTimelines" class="bar bar-success time-bar" [style.width]="timeline.length" (click)="pickTimeline(timeline.id,timeline.type);"
+      [style.backgroundColor]="timeline.color">
+      <b>{{timeline.TipoLogTiempoName}}</b>
+    </div>
+  </div>
+  <div class="progress timebar-container">
+    <!-- Add progress bars base on the start time order -->
+    <div *ngFor="let timeline of timeForm.listOfWorklines" class="bar bar-success time-bar" [style.width]="timeline.length" (click)="pickTimeline(timeline.id,timeline.type);"
+      [style.backgroundColor]="timeline.color" ngbTooltip=" {{timeline.startTime | date:'HH:mm'}} - {{timeline.endTime | date:'HH:mm'}}">
+      <span class="startTimeLabel" *ngIf="(timeline.getSize() >= 15) && (!timeline.isEditable())">{{timeline.startTime | date:'HH:mm'}}</span>
+      <span class="endTimeLabel" *ngIf="(timeline.getSize() >= 15) && (!timeline.isEditable())">{{timeline.endTime | date:'HH:mm'}}</span>
+    </div>
+
+  </div>
+</div>
+<hr/>
+<div [style.visibility]="(selectedTimeLine.id == '') ? 'hidden' : 'visible' ">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <ngb-timepicker [(ngModel)]="selectedTimeLine.startTimeModel" (ngModelChange)="startTimePicker($event)"></ngb-timepicker>
+      </div>
+      <div class="col">
+        <ngb-timepicker [disabled]="selectedTimeLine.isDateIncomplete" [(ngModel)]="selectedTimeLine.endTimeModel" (ngModelChange)="endTimePicker($event)"></ngb-timepicker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div ng2-auto-complete [source]="observableSource.bind(this)" placeholder="enter text">
+          <input type="text" class="form-control" [(ngModel)]="selectedTimeLine.startTimeReason" placeholder="Reason" (blur)="validateStartReason()"
+            [class.inputRequired]="startReasonValidation"  i18n-placeholder/>
+        </div>
+      </div>
+      <div class="col">
+        <input ng2-auto-complete [disabled]="selectedTimeLine.isDateIncomplete" [source]="observableSource.bind(this)" type="text" class="form-control" [(ngModel)]="selectedTimeLine.endTimeReason" placeholder="Reason" (blur)="validateEndReason()"
+          [class.inputRequired]="endReasonValidation" i18n-placeholder />
+      </div>
+    </div>
+    <div class="row">
+      <div class="center-block">
+        <!--Todo:Add buttons functionality -->
+        <i class="fa fa-check fa-3x" (click)="validateReasons()"></i>
+        <i class="fa fa-close fa-3x" (click)="clearTimelineSelection()"></i>
+        <i class="fa fa-trash fa-3x" (click)="deleteTimeline()"></i>
+      </div>
+    </div>
+  </div>
+</div>

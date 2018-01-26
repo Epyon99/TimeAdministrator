@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="7c0a71d337783e527c1c8e91e433b301c5b1d8a8" datatype="html">
+        <source>Start Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e1f10d9bf4d3c37490cd5bf82007444ae7af46b1" datatype="html">
+        <source>End Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4ba250869daa372b54d24fafc0ea934769ee4076" datatype="html">
+        <source>Reason</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="036debfdb4856a3d3512b46ed9cac22a24c304b1" datatype="html">
+        <source>Buchen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4c57ac0d5f8599114795f0b5e6f478befbe15966" datatype="html">
+        <source>Work</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="780469ca7ae4fae92e341b29412bd877df34ad13" datatype="html">
+        <source>Funeral</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c38c5590e97411d14a64f2fcee9a1bff7abe0eb3" datatype="html">
+        <source>Holidays</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95da79443ad141aefd6b71697cc603efab94ebc5" datatype="html">
+        <source>Birth</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d6bdda9a60ec61f5d20f6d7df2b62e0166c873a3" datatype="html">
+        <source>Marriage</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="316faac5379eadd5d9af37fc937572106167a7c1" datatype="html">
+        <source>Compensation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="fba752de7514d83eede7d4067d38b3b8f9faf4bf" datatype="html">
+        <source>Sick</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="01c1be88b897ae42b36efe58f0f05b4321a2ce78" datatype="html">
+        <source>Military Service</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ae39e41097f712a2b669c3ce1f01acac74f95f05" datatype="html">
+        <source>School</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c6cc76b6a38bdd3921198557a06b54f94c0b2db8" datatype="html">
+        <source>Accident</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bb4752086f5f9737f38a5c1a44d630451a6e3bbd" datatype="html">
+        <source>Fatherhood</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="726aaf60ee70b65b4dc059bde42ad7b0caeb1fbd" datatype="html">
+        <source>Timeadjust</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a76de1e4e91e049d80eba4c21f24a76a42aec15a" datatype="html">
+        <source>Movement</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
